@@ -5,6 +5,10 @@ on:
       - master
 jobs:
   build:
+    name: Build
+    environment:
+      name: github-pages
+      url: https://energizer91.github.io/telia-test/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
