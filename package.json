@@ -1,0 +1,29 @@
+{
+  "name": "telia-test",
+  "version": "1.0.0",
+  "description": "Telia Play/Cmore test case: Video player",
+  "main": "index.js",
+  "repository": "https://github.com/energizer91/telia-test.git",
+  "author": "Alexander Bareyko <militaryboy@yandex.ru>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack serve",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.2",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.5.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
