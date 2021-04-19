@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://telia-test/./main.css"],"names":[],"mappings":"AAAA;IACI,mBAAmB;AACvB,C","file":"main.css","sourcesContent":["main {\n    margin: 20px auto 0;\n}"],"sourceRoot":""}
