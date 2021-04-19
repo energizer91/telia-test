@@ -1,6 +1,12 @@
 import React from "react";
 
 /**
+ * Borders to set some boundaries to description
+ * @type {number[]}
+ */
+const borders = [20, 20];
+
+/**
  * Get scroll and description position and set it accordingly so it will position properly without going outside screen
  * @param {HTMLElement} d Description HTML element
  * @param {React.MouseEvent} e Mouse over event
@@ -9,7 +15,7 @@ const setDescriptionPosition = (d, e) => {
   const scrollPosition = [window.scrollX, window.scrollY];
   const mousePosition = [scrollPosition[0] + e.clientX, scrollPosition[1] + e.clientY];
   const descriptionSize = [d.clientWidth, d.clientHeight];
-  const windowSize = [scrollPosition[0] + window.innerWidth, scrollPosition[1] + window.innerHeight];
+  const windowSize = [scrollPosition[0] + window.innerWidth - borders[0], scrollPosition[1] + window.innerHeight - borders[1]];
   const result = [mousePosition[0] + 5, mousePosition[1] + 5];
 
   if (result[0] + descriptionSize[0] > windowSize[0]) {
@@ -23,6 +29,17 @@ const setDescriptionPosition = (d, e) => {
   d.style.transform = `translate(${result[0]}px, ${result[1]}px)`;
 }
 
+/**
+ * @callback onClickCallback
+ * @param {number} index Selected video index
+ */
+
+/**
+ * VideoThumbnail React component
+ * @param props
+ * @param {Video} props.video Video
+ * @param {onClickCallback} props.onClick Click handler to change video
+ */
 const VideoThumbnail = ({video, onClick}) => {
   const thumbnailRef = React.useRef(null);
   const descriptionRef = React.useRef(null);

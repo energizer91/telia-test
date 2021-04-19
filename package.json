@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "doc": "jsdoc -r components --destination dist/docs"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
@@ -16,6 +17,7 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.2",
     "html-webpack-plugin": "^5.3.1",
+    "jsdoc": "^3.6.6",
     "style-loader": "^2.0.0",
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0",
