@@ -12,9 +12,7 @@ const MainApp = () => {
   React.useEffect(() => {
     fetch(dataUrl)
       .then(res => res.json())
-      .then(v => {
-        setVideos(v);
-      });
+      .then(setVideos);
   }, [dataUrl]);
 
   return (

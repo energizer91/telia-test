@@ -1,7 +1,7 @@
 import React from "react";
 
-const VideoPlayer = ({source}) => {
-  return <video className="video" src={source} controls={true} autoPlay={true}/>;
-}
+const VideoPlayer = ({source}) => (
+  <video className="video" src={source} controls={true} autoPlay={true}/>
+);
 
 export default VideoPlayer;

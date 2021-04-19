@@ -1,6 +1,6 @@
 import React from "react";
 
-const getDescriptionPosition = (d, e) => {
+const setDescriptionPosition = (d, e) => {
   const scrollPosition = [window.scrollX, window.scrollY];
   const mousePosition = [scrollPosition[0] + e.clientX, scrollPosition[1] + e.clientY];
   const descriptionSize = [d.clientWidth, d.clientHeight];
@@ -15,28 +15,7 @@ const getDescriptionPosition = (d, e) => {
     result[1] = windowSize[1] - descriptionSize[1];
   }
 
-  return result;
-}
-
-const setDescriptionPosition = (d, e) => {
-  const [x, y] = getDescriptionPosition(d, e);
-
-  d.style.left = x + "px";
-  d.style.top = y + "px";
-}
-
-const elementEnter = (t, d) => e => {
-  e.currentTarget.classList.add("video-thumbnail_hover");
-  setDescriptionPosition(d, e);
-}
-
-const elementMove = (t, d) => e => {
-  setDescriptionPosition(d, e);
-}
-
-const elementLeave = (t, d) => e => {
-  console.log(t, d, e);
-  e.currentTarget.classList.remove("video-thumbnail_hover");
+  d.style.transform = `translate(${result[0]}px, ${result[1]}px)`;
 }
 
 const VideoThumbnail = ({video, onClick}) => {
@@ -44,34 +23,27 @@ const VideoThumbnail = ({video, onClick}) => {
   const descriptionRef = React.useRef(null);
 
   React.useEffect(() => {
-    if (!thumbnailRef.current) {
-      return;
+    const elementEnter = e => {
+      e.currentTarget.classList.add("video-thumbnail_hover");
     }
 
-    if (!descriptionRef.current) {
-      return;
+    const elementMove = e => {
+      setDescriptionPosition(descriptionRef.current, e);
     }
 
-    const onElementEnter = elementEnter(thumbnailRef.current, descriptionRef.current);
-    const onElementMove = elementMove(thumbnailRef.current, descriptionRef.current);
-    const onElementLeave = elementLeave(thumbnailRef.current, descriptionRef.current);
+    const elementLeave = e => {
+      e.currentTarget.classList.remove("video-thumbnail_hover");
+    }
 
-    thumbnailRef.current.addEventListener("mouseenter", onElementEnter);
-    thumbnailRef.current.addEventListener("mousemove", onElementMove);
-    thumbnailRef.current.addEventListener("mouseleave", onElementLeave);
+    thumbnailRef.current.addEventListener("mouseenter", elementEnter);
+    thumbnailRef.current.addEventListener("mousemove", elementMove);
+    thumbnailRef.current.addEventListener("mouseleave", elementLeave);
 
     return () => {
-      if (!thumbnailRef.current) {
-        return;
-      }
-
-      if (!descriptionRef.current) {
-        return;
-      }
-
-      thumbnailRef.current.removeEventListener("mouseenter", onElementEnter);
-      thumbnailRef.current.removeEventListener("mousemove", onElementMove);
-      thumbnailRef.current.removeEventListener("mouseleave", onElementLeave);
+      // It's not really necessary, but definitely a good way to clean handlers you've set
+      thumbnailRef.current.removeEventListener("mouseenter", elementEnter);
+      thumbnailRef.current.removeEventListener("mousemove", elementMove);
+      thumbnailRef.current.removeEventListener("mouseleave", elementLeave);
     }
   }, [thumbnailRef, descriptionRef]);
 
