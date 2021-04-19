@@ -11,8 +11,6 @@ const getDescriptionPosition = (d, e) => {
     result[0] = windowSize[0] - descriptionSize[0];
   }
 
-  console.log(result[1], descriptionSize[1], result[1] + descriptionSize[1], windowSize[1]);
-
   if (result[1] + descriptionSize[1] > windowSize[1]) {
     result[1] = windowSize[1] - descriptionSize[1];
   }
@@ -28,7 +26,6 @@ const setDescriptionPosition = (d, e) => {
 }
 
 const elementEnter = (t, d) => e => {
-  console.log(t, d, e);
   e.currentTarget.classList.add("video-thumbnail_hover");
   setDescriptionPosition(d, e);
 }
