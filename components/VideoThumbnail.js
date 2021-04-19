@@ -1,5 +1,10 @@
 import React from "react";
 
+/**
+ * Get scroll and description position and set it accordingly so it will position properly without going outside screen
+ * @param {HTMLElement} d Description HTML element
+ * @param {React.MouseEvent} e Mouse over event
+ */
 const setDescriptionPosition = (d, e) => {
   const scrollPosition = [window.scrollX, window.scrollY];
   const mousePosition = [scrollPosition[0] + e.clientX, scrollPosition[1] + e.clientY];
